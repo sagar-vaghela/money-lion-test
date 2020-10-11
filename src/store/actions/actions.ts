@@ -1,9 +1,10 @@
+import { typedAction } from '../helpers';
 
 export const currentCompoent=(val: any)=>{
-    return { type: "CURRENT_COMPONENT", value: val };
+  return typedAction("CURRENT_COMPONENT", val);
 }
 export const changeValues=(val: any)=>{
-    return { type: "CHANGE_VALUE", value: val };
+    return typedAction("CHANGE_VALUE", val);
 }
 
 

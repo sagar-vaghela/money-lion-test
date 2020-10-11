@@ -26,7 +26,7 @@ export const Welcome: React.FC = () => {
             <Row justify="center" align="middle">
                 <Col span={5}></Col>
                 <Col span={2}>
-                    <Button type="primary">APPLY NOW</Button>
+                    <Button type="primary" onClick={()=> console.log("hello")}>APPLY NOW</Button>
                 </Col>
                 <Col span={5}></Col>
             </Row>
