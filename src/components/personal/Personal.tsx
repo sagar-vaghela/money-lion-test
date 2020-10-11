@@ -2,7 +2,29 @@ import React from 'react';
 import { Row, Col, Input, Form, Button, Typography } from "antd";
 
 const { Title } = Typography;
-const Personal = () => {
+
+interface personalProps {
+    changeCurrentComp: any;
+    changeValuesFunc: any;
+    values: any;
+}
+
+export const Personal: React.FC<personalProps> = ({changeCurrentComp, values, changeValuesFunc}) => {
+    const onFinish = (data: {
+        firstName: string;
+        lastName: string;
+        Email: string;
+      }) => {
+          let result = {
+              ...values,
+              Email: data.Email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+          }
+        console.log("values", result);
+        changeValuesFunc(result);
+        changeCurrentComp(3);
+      };
     return (
         <>
             <Row justify="center" align="middle">
@@ -12,7 +34,7 @@ const Personal = () => {
                 </Col>
                 <Col span={4}></Col>
             </Row>
-            <Form layout="vertical" name="basic">
+            <Form layout="vertical" name="basic" onFinish={onFinish}>
                 <Row justify="center" align="middle">
                     <Col span={3}></Col>
                     <Col span={6}>
@@ -32,7 +54,7 @@ const Personal = () => {
                         </Form.Item>
                         <Form.Item
                             label="Email"
-                            name="email"
+                            name="Email"
                             rules={[
                                 { required: true, message: "Field is required!" },
                                 {
@@ -52,7 +74,7 @@ const Personal = () => {
                         <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Continue
-                    </Button>
+                            </Button>
                         </Form.Item>
                     </Col>
                     <Col span={5}></Col>
@@ -61,5 +83,3 @@ const Personal = () => {
         </>
     );
 }
-
-export default Personal;

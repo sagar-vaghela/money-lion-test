@@ -1,7 +1,12 @@
 import React from 'react';
 import { Row, Col, Button, Typography } from "antd";
 const { Title } = Typography;
-export const Welcome: React.FC = () => {
+
+interface welcomeProps {
+    changeCurrentComp: any;
+}
+
+export const Welcome: React.FC<welcomeProps> = ({changeCurrentComp}) => {
     return (
         <>
             <Row justify="center" align="middle">
@@ -26,12 +31,10 @@ export const Welcome: React.FC = () => {
             <Row justify="center" align="middle">
                 <Col span={5}></Col>
                 <Col span={2}>
-                    <Button type="primary" onClick={()=> console.log("hello")}>APPLY NOW</Button>
+                    <Button type="primary" onClick={()=> changeCurrentComp(2)}>APPLY NOW</Button>
                 </Col>
                 <Col span={5}></Col>
             </Row>
         </>
     );
 }
-
-export default Welcome;

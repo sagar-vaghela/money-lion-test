@@ -1,8 +1,27 @@
 import React from 'react';
 import { Row, Col, DatePicker, Form, Button, Typography } from "antd";
+import moment from "moment";
+
 const { Title } = Typography;
 
-const DOB = () => {
+interface dobProps {
+    changeCurrentComp: any;
+    changeValuesFunc: any;
+    values: any;
+}
+
+export const DOB: React.FC<dobProps> = ({changeCurrentComp, values, changeValuesFunc}) => {
+    const onFinish = (data: { dob: string }) => {
+        console.log(values);
+        let result = {
+            ...values,
+            dob: moment(data.dob).format("DD/MM/YYYY"),
+        }
+        console.log("values", result);
+        changeValuesFunc(result);
+        changeCurrentComp(4);
+      };
+      
     return (
         <>
             <Row justify="center" align="middle">
@@ -12,7 +31,7 @@ const DOB = () => {
                 </Col>
                 <Col span={3}></Col>
             </Row>
-            <Form layout="vertical" name="basic">
+            <Form layout="vertical" name="basic" onFinish={onFinish}>
                 <Row justify="center" align="middle">
                     <Col span={4}></Col>
                     <Col span={4}>
@@ -41,5 +60,3 @@ const DOB = () => {
         </>
     );
 }
-
-export default DOB;

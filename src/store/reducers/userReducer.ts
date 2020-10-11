@@ -21,14 +21,10 @@ export const userReducer = (state = initialState, action: UserAction): UserState
     switch (action.type) {
         case 'CURRENT_COMPONENT':
             newState.currentComp = action.payload;
+            localStorage.setItem("currentPage", action.payload);
             break;
-        case 'CHANGE_VALUE': {
-            console.log('action.value', action.payload)
-            newState.data = {
-                ...newState.data,
-                [action.payload.target.name]: action.payload.target.value
-            };
-        }
+        case 'CHANGE_VALUE': 
+            newState.data = action.payload;
             break;
     }
     return newState;
